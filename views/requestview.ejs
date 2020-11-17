@@ -1,0 +1,161 @@
+<%- include("./partials/header") -%>
+<head>
+    <title>DONOR FINDER</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/home.css"></link>
+
+
+
+    <script>
+      var stateObject = ["Bangalore ","Bangalore Rural",  " Belgaum ",  "Bellary",    "Bidar",    "Bijapur  ",  "Chamarajanagar",   "Chikkaballapura ","Chikmagalur (Chikkamagaluru)",  "Chitradurga  ",  "Dakshina Kannada",   "Davanagere ",  "Dharwad  ",  "Gadag",    "Gulbarga",   "Hassan",   "Haveri ",  "Kodagu ",  "Kolar",    "Koppal ",  "Mandya ",  "Mysore ",  "Raichur",    "Ramanagara ",  "Shimoga    ","Tumkur ",  "Udupi  ",  "Uttara Kannada ","Yadgir"]
+
+window.onload = function () {
+var city = document.getElementById("city")
+//stateSel = document.getElementById("stateSel"),
+//districtSel = document.getElementById("districtSel");
+var cities='<option></option>'
+for (var city1 in stateObject) {
+//city.options = new Option(city,City);
+
+
+cities+="<option>"+stateObject[city1]+"</option>"
+  city.innerHTML = cities;
+}
+}
+</script>
+
+    </head> 
+    <body>
+        <%- include("navbar") -%>
+            <br><br>
+
+                <%- include("flash") -%>
+                <h1>Requesting Details</h1>
+                <br>
+                <form>
+                      <div class="col-xl-8 order-xl-1">
+                        <div class="card bg-secondary shadow">
+                          <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                              <div class="col-8">
+                                <h3 class="mb-0">Enter User  Details</h3>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                              <h6 class="heading-small text-muted mb-4">User information</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="first_name" name="first_name" id="first_name">First name</label>
+                                      <label  class="form-control form-control-alternative" > <%=user.first_name%></label>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="last_name">Last name</label>
+                                      <label  class='form-control form-control-alternative'><%=user.last_name%></label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pl-lg-4">
+                              <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for='gender'>Gender</label>
+                                      <label class="form-control form-control-alternative"><%=user.gender%></label>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="blood_group">Blood group</label>
+                                      <label class="form-control form-control-alternative"><%=user.blood_group%></label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="pl-lg-4">
+                              <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group focused">
+                                      <label for="datepicker" class="form-control-label">Date of Birth</label>
+                                      <label class="form-control-alternative form-control"><%=user.date_of_birth%></label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                                <hr class="my-4">
+                              <!-- Address -->
+                              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="email">Email address</label>
+                                      <label class="form-control-alternative form-control"><%=user.email%></label>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="phone_number">Phone Number</label>
+                                      <label class="form-control form-control-alternative"><%=user.phone_number%></label>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="address">Address</label>
+                                      <label class="form-control form-control-alternative"><%=user.address%></label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="input-city">City</label>
+                                      <label class="form-control form-control-alternative"><%=user.city%></label>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label" for="pincode">Pincode code</label>
+                                      <label class="form-control-alternative form-control"><%=user.pincode%></label>
+                                    </div>
+                                  </div>
+                                </div>
+                                 
+                              </div>
+                              <hr class="my-4">
+                              <h6 class="heading-small text-muted mb-4">About</h6>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" for="address">Any Message</label>
+                                      <label class="form-control form-control-alternative"><%=user.message%></label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                          <!--  <button type="submit" class="btn btn-primary btn-lg" align='center'>Edit </button> -->
+                          </div>
+                          <% if(currentUser && user.request_id.equals(currentUser._id)){ %>
+                         <!-- <a href="/requestedit/<%=user._id%>" class="btn btn-primary btn-lg"> Edit</a>
+                          <br><br> -->
+                          <hr class="my-4">
+                          <h6 class="heading-small  mb-4" style="margin-left: 10%"> In case you need to edit request you can delete this  and add new one </h6>
+                          
+                          <a href="/requestdelete/<%=user._id%>" style="background: red" class="btn btn-primary btn-lg">
+                          Delete</a>
+                          <% } %>
+
+                        </div>
+                      </form>
+                      <br>
+                <%- include("./partials/footer") -%>

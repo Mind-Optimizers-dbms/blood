@@ -1,0 +1,205 @@
+<%- include("./partials/header") -%>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+       <script>
+      var stateObject = [ "Bangalore ","Bangalore Rural",  " Belgaum ",  "Bellary",    "Bidar",    "Bijapur  ",  "Chamarajanagar",   "Chikkaballapura ","Chikmagalur (Chikkamagaluru)",  "Chitradurga  ",  "Dakshina Kannada",   "Davanagere ",  "Dharwad  ",  "Gadag",    "Gulbarga",   "Hassan",   "Haveri ",  "Kodagu ",  "Kolar",    "Koppal ",  "Mandya ",  "Mysore ",  "Raichur",    "Ramanagara ",  "Shimoga    ","Tumkur ",  "Udupi  ",  "Uttara Kannada ","Yadgir"]
+
+window.onload = function () {
+var city = document.getElementById("city")
+//var cities=''
+var cities='<option></option>'
+for (var city1 in stateObject) {
+cities+="<option>"+stateObject[city1]+"</option>"
+  city.innerHTML = cities;
+}
+}
+   </script>
+   <style>
+    table
+    {
+      width: 75%
+    }
+    #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 75%;
+  margin: 2%;
+  border-color: black;
+  border: 2px;
+  margin-left: 13% 
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#4CAF50;
+  color: black;
+}
+#totheright
+{
+  text-align: left;
+  margin-left: 40px; 
+  font-size: 50px;
+}
+.filter
+{
+  margin-left: 7%;
+}
+
+   </style>
+   <script>
+
+(function(document) {
+  'use strict';
+ 
+  var TableFilter = (function(Arr) {
+ 
+    var _input;
+ 
+    function _onInputEvent(e) {
+    _input = e.target;
+    var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+    Arr.forEach.call(tables, function(table) {
+    Arr.forEach.call(table.tBodies, function(tbody) {
+    Arr.forEach.call(tbody.rows, _filter);
+    });
+    });
+    }
+ 
+    function _filter(row) {
+    var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+    row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+    }
+ 
+    return {
+    init: function() {
+    var inputs = document.getElementsByClassName('light-table-filter');
+    Arr.forEach.call(inputs, function(input) {
+    input.oninput = _onInputEvent;
+    });
+    }
+    };
+  })(Array.prototype);
+ 
+  document.addEventListener('readystatechange', function() {
+    if (document.readyState === 'complete') {
+    TableFilter.init();
+    }
+  });
+ 
+})(document);
+   </script>
+ 
+
+
+    </head>
+
+    <body>
+
+        <%- include("navbar") -%>
+            <br><br>
+            <%- include("flash") -%>
+          </div>
+            <h2 id="totheright">Donors List</h2>
+
+            <hr class="my-4">
+            <div class="container">
+              <form action="/donors" method="POST">
+                      <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label">Filter By Blood group</label>
+                                      <select placeholder="Blood Group" class="form-control light-table-filter" data-table="table-inf" id='blood_group' name='blood_group' required>
+                                          <option></option> 
+                                          <option>A+</option>
+                                          <option>A-</option>
+                                          <option>AB+</option>
+                                          <option>AB-</option>
+                                          <option>O+</option>
+                                          <option>O-</option>
+                                          <option>B+</option>
+                                          <option>B-</option> 
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label" >Filter By City</label>
+                                      <select class="form-control light-table-filter" data-table="table-inf" name="city" id="city" size="1" required>
+                                      <option value="" selected="selected">Select City</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-4">
+                                    <div class="form-group focused">
+                                      <label class="form-control-label">Filter By Pincode</label>
+                                      <input type="text" class="form-control light-table-filter form-control-alternative" placeholder="Pincode"  name="pincode" data-table="table-inf">
+                                    </div>
+
+                                </div>
+                              </div>
+                              <button style="float: right;" type="submit" class="btn btn-primary btn-lg" align='center'> <i class="fa fa-fw fa-search"></i> Search</button>
+                              </div>      
+                            </form>
+
+
+                              
+
+            </div> 
+            <a href="/donors"><button style="float: right;" style="color: red" class="btn btn-primary btn-lg" align='center'> Clear Filter </button></a>
+            <br><br><br>
+ 
+            <table id='customers' class="table table-inf">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Blood</th>
+                <th>Date of Birth</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>Phone Number</th>
+                <th>More</th>
+              </tr>
+            </thead>
+
+           		<% user.forEach(function(ca){%>
+           		<tbody>
+           		<tr>
+           			<td><%=ca.first_name%>  <%=ca.last_name%></td>
+           			<td><%=ca.blood_group%></td>
+                <td><%=ca.date_of_birth%></td>
+                <td><%=ca.city%></td>
+                <td><%=ca.pincode%></td>
+           			<td><%=ca.phone_number%></td>
+                <% if(ca.security==false){%>
+                <td><a href="/profile/<%=ca.donor_id%>"  > <i class="fas fa-user" style="color: black"></i></span> Profile</a></td>
+                <% } %>
+                <% if(ca.security==true){%>
+                  <% if(currentUser && ca.donor_id.equals(currentUser._id)){ %>
+                      <td style="color: red"><a href="/profile" style="color: red"><span> <i class="fas fa-user" style="color: red">  </i></span> Profile Protected </a></td>
+                  <% } %>
+                  <% if(!currentUser || !ca.donor_id.equals(currentUser._id)) { %>
+                      <td style="color: red"><span> <i class="fas fa-user" style="color: red"></i></span> Profile Protected</td>
+                      <% }%>
+                
+                <% } %>
+
+           		</tr>
+           		<% });%>
+            </tbody>
+           	</table>
+
+
+           <%- include("./partials/footer") -%>

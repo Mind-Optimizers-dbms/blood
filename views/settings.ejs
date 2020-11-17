@@ -1,0 +1,45 @@
+<%- include("./partials/header") -%>
+    <title>DONOR FINDER</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/home.css">
+    
+    <style>
+        #totheright
+{
+  text-align: left;
+  margin-left: 40px;
+  font-size: 40px;
+  color: #32325d;
+}
+
+    </style>
+    </head>
+
+    <body>
+        <%- include("navbar") -%>
+            <br><br>
+            	<%- include("flash") -%>
+                <h1 id="totheright">User Account Settings</h1>
+                <div class="col-xl-8 order-xl-1">
+                        <div class="card bg-secondary shadow">
+                          <div class="card-header bg-white border-0">
+                            <h3>
+                                Potecting Profile 
+                            </h3 >
+                            <h4>You can Allow/disable others to view your profile </h4>
+                            <% if(donor.security==true){%>
+                            <h4 style="color:red">Your profile is potected </h4>
+                            <a href="/securityupdatetofalse/<%=donor.donor_id%>" style="background:green" class="btn btn-primary btn-lg">
+                          Allow others to view Profile</a>
+                        <%}%>
+                        <% if(donor.security==false){%>
+                            <h4 style="color:green">Your allowed others to view Profile</h4>
+                            <a href="/securityupdatetotrue/<%=donor.donor_id%>" style="background:red" class="btn btn-primary btn-lg">
+                          Disallow others to view Profile</a>
+                        <%}%>
+
+
+             <%- include("./partials/footer") -%>
+
+             

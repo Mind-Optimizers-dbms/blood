@@ -1,0 +1,22 @@
+ <% if(ca.security.equals("false")){%>
+                <td><a href="/profile/<%=ca.donor_id%>"> <i class="fas fa-user" style="color: black"></i></span> Profile</a></td>
+                <% } %>
+                <% if(ca.security.equals("true")){%>
+                <td><a href="/profile/<%=ca.donor_id%>"> <i class="fas fa-user" style="color: black"></i></span> Profile</a></td>
+                <% } %> -->
+
+
+
+
+
+
+
+
+                <% if(ca.security=="false"){%>
+                <td><a href="/profile/<%=ca.donor_id%>"> <i class="fas fa-user" style="color: black"></i></span> Profile</a></td>
+                <% }%>
+
+
+                <% if(!ca.donor_id.equals(currentUser._id)) {%>
+                  <td style="color: red"><span> <i class="fas fa-user" style="color: red"></i></span> Profile Protected</td>
+                <% } %>
